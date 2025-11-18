@@ -18,13 +18,15 @@ if (saved) {
 
 function escapeHtml(str) {
   if (typeof str !== "string") return str;
-  return str.replace(
-    /[&<>"']/g,
-    (s) =>
-      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[
-        s
-      ])
-  );
+  return str.replace(/[&<>"']/g, (s) => {
+    return {
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;",
+    }[s];
+  });
 }
 
 renderTasks();
@@ -60,13 +62,11 @@ function renderTasks() {
   const filter = filterSelect.value;
 
   const filtered = tasks.filter((t) => {
-    const matchesQ = (t.text || "").toLowerCase().includes(q);
-
+    const matchesQ = t.text.toLowerCase().includes(q);
     const matchesFilter =
       filter === "all" ||
       (filter === "active" && !t.completed) ||
       (filter === "completed" && t.completed);
-
     return matchesQ && matchesFilter;
   });
 
@@ -91,20 +91,19 @@ function renderTasks() {
 
     taskList.appendChild(li);
   });
+
+  updateCounts();
 }
 
 taskList.addEventListener("click", function (e) {
   const li = e.target.closest(".task-item");
   if (!li) return;
+
   const id = li.dataset.id;
 
-  if (e.target.matches(".toggle")) {
-    toggleComplete(id);
-  } else if (e.target.matches(".delete")) {
-    deleteTask(id);
-  } else if (e.target.matches(".edit")) {
-    startEditTask(id);
-  }
+  if (e.target.matches(".toggle")) toggleComplete(id);
+  else if (e.target.matches(".delete")) deleteTask(id);
+  else if (e.target.matches(".edit")) startEditTask(id);
 });
 
 function toggleComplete(id) {
@@ -124,10 +123,13 @@ function deleteTask(id) {
 function startEditTask(id) {
   const t = tasks.find((x) => x.id === id);
   if (!t) return;
+
   const newText = prompt("Edit task text", t.text);
   if (newText === null) return;
+
   const trimmed = newText.trim();
   if (!trimmed) return alert("Task cannot be empty");
+
   t.text = trimmed;
   saveTasks();
   renderTasks();
@@ -153,19 +155,6 @@ const debouncedRender = debounce(renderTasks, 200);
 searchInput.addEventListener("input", debouncedRender);
 filterSelect.addEventListener("change", renderTasks);
 
-function saveTasksAsync() {
-  return new Promise((resolve, reject) => {
-    try {
-      setTimeout(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-        resolve(true);
-      }, 500);
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
 function updateCounts() {
   const countsEl = document.getElementById("counts");
   if (!countsEl) return;
@@ -178,4 +167,5 @@ function updateCounts() {
   } — ${completed} completed`;
 }
 
+renderTasks();
 updateCounts();
