@@ -1,31 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>To Do List</title>
     <link rel="stylesheet" href="assets/css/style.css" />
-</head>
-<body>
-    <h1>To Do List</h1>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,
+      <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
+      <text y='.9em' font-size='90'>📋</text>
+      </svg>"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <div class="content">
+        <h1>To Do List</h1>
 
-    <form id="taskForm">
-        <input id="taskInput" type="text" placeholder="Add a new task..." required />
-        <input id="dueInput" type="date" />
-        <button type="submit">Add Task</button>
-    </form>
+        <form id="taskForm" class="form-row" autocomplete="off">
+          <input
+            id="taskInput"
+            type="text"
+            placeholder="Add a new task..."
+            required
+          />
+          <input id="dueInput" type="date" aria-label="Due date" />
+          <button class="button-primary" type="submit">Add Task</button>
+        </form>
 
-    <div class="controls">
-        <input id="searchInput" type="search" placeholder="Search..." />
-        <select id="filterSelect">
-            <option id value="all">All</option>
-            <option id value="active">Active</option>
-            <option id value="completed">Completed</option>
-        </select>
+        <div class="controls">
+          <input id="searchInput" type="search" placeholder="Search tasks here..." />
+          <select id="filterSelect" aria-label="Filter tasks">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+
+        <ul id="taskList" class="task-list" aria-live="polite"></ul>
+
+        <div class="footer">
+          <div id="counts">0 tasks</div>
+          <div><button id="clearAll" class="small-btn">Clear all</button></div>
+        </div>
+      </div>
     </div>
 
-    <ul id="taskList" class="tasklist"></ul>
-
     <script src="assets/js/script.js"></script>
-</body>
+  </body>
 </html>
