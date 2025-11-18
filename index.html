@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+    <h1>To Do List</h1>
+
+    <form id="taskForm">
+        <input id="taskInput" type="text" placeholder="Add a new task..." required />
+        <input id="dueInput" type="date" />
+        <button type="submit">Add Task</button>
+    </form>
+
+    <div class="controls">
+        <input id="searchInput" type="search" placeholder="Search..." />
+        <select id="filterSelect">
+            <option id value="all">All</option>
+            <option id value="active">Active</option>
+            <option id value="completed">Completed</option>
+        </select>
+    </div>
+
+    <ul id="taskList" class="tasklist"></ul>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

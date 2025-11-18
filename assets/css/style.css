@@ -1,0 +1,79 @@
+:root {
+  --bg: #f7f7f8;
+  --card: #fff;
+  --muted: #666;
+  --accent: #0b76ef;
+}
+
+* {
+  box-sizing: border-box;
+}
+body {
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+.app {
+  width: 100%;
+  max-width: 700px;
+  background: var(--card);
+  padding: 18px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+form {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+form input[type="text"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+form button {
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.task-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.task-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+.task-item.completed .label {
+  text-decoration: line-through;
+  color: var(--muted);
+}
+.task-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 6px;
+}
+.small-btn {
+  border: none;
+  padding: 6px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+    
