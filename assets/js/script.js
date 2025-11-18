@@ -178,12 +178,4 @@ function updateCounts() {
   } — ${completed} completed`;
 }
 
-if (saved) {
-  try {
-    tasks = JSON.parse(saved);
-  } catch (err) {
-    console.error(err);
-  }
-}
-renderTasks();
 updateCounts();
