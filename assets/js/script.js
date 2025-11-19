@@ -12,7 +12,7 @@ if (saved) {
   try {
     tasks = JSON.parse(saved);
   } catch (err) {
-    console.error("Failed to parse saved tasks:", err);
+    console.error("Failed to load saved tasks:", err);
   }
 }
 

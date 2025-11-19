@@ -3,20 +3,24 @@ body {
   height: 100%;
   margin: 0;
 }
+
 body {
   font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto,
     "Helvetica Neue", Arial;
   background: linear-gradient(180deg, #f7fbff 0%, #f4f7fb 100%);
   color: #0f172a;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 28px;
+  padding: 28px 28px 48px;
+  min-height: 100vh;
+  box-sizing: border-box;
 }
 
 .app {
   width: 100%;
   max-width: 920px;
+  margin-top: 8px;
   background: #ffffff;
   border-radius: 14px;
   padding: 20px;
@@ -56,9 +60,11 @@ body {
   margin-top: 6px;
   justify-content: space-between;
 }
+
 .controls input[type="search"] {
   flex: 1;
 }
+
 .controls select {
   width: 160px;
   height: 44px;
@@ -77,6 +83,7 @@ select {
   transition: box-shadow 0.12s, border-color 0.12s;
   height: 44px;
 }
+
 input:focus,
 select:focus {
   border-color: #2063ff;
@@ -97,6 +104,7 @@ select:focus {
   justify-content: center;
   transition: transform 0.12s, box-shadow 0.12s;
 }
+
 .button-primary:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 30px rgba(32, 99, 255, 0.12);
@@ -109,6 +117,18 @@ select:focus {
   border-radius: 10px;
   background: linear-gradient(180deg, rgba(11, 118, 239, 0.01), transparent);
   border: 1px solid rgba(15, 23, 42, 0.02);
+  max-height: calc(100vh - 380px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.task-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.task-list::-webkit-scrollbar-thumb {
+  background: rgba(15, 23, 42, 0.06);
+  border-radius: 8px;
 }
 
 .task-item {
@@ -122,9 +142,11 @@ select:focus {
   border: 1px solid rgba(15, 23, 42, 0.03);
   transition: transform 0.08s ease, box-shadow 0.12s ease;
 }
+
 .task-item:last-child {
   margin-bottom: 0;
 }
+
 .task-item:hover {
   transform: translateY(-4px);
   box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
@@ -142,9 +164,11 @@ select:focus {
   flex-direction: column;
   gap: 4px;
 }
+
 .label strong {
   font-size: 0.98rem;
 }
+
 .label .due {
   font-size: 0.82rem;
   color: #6b7280;
@@ -164,6 +188,7 @@ select:focus {
   display: flex;
   gap: 8px;
 }
+
 .small-btn {
   background: transparent;
   border: 1px solid rgba(15, 23, 42, 0.06);
@@ -172,10 +197,12 @@ select:focus {
   cursor: pointer;
   font-size: 0.85rem;
 }
+
 .small-btn.delete {
   color: #ef4444;
   border-color: rgba(239, 68, 68, 0.12);
 }
+
 .small-btn.edit {
   border-color: rgba(32, 99, 255, 0.12);
 }
